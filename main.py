@@ -26,13 +26,13 @@ lang = st.text_input("Enter the language in which you want the story to be gener
 bt1, bt2 = st.columns(2)
 
 with bt1:
-if st.button("Generate Story"):
-  #invoking the LLM model with the prompt
-  st.write("***** Begin Story ************")
-  response = gpt4omini.invoke(query_template.format(story_type = story_ty, no_characters = no_ch , language = lang))
-  st.write(response.content)
-  st.write("***** End Story ************")
+  if st.button("Generate Story"):
+    #invoking the LLM model with the prompt
+    st.write("***** Begin Story ************")
+    response = gpt4omini.invoke(query_template.format(story_type = story_ty, no_characters = no_ch , language = lang))
+    st.write(response.content)
+    st.write("***** End Story ************")
 
 with bt2:
-if st.button("Clear"):
-  st.write("")
+  if st.button("Clear"):
+    st.write("")
