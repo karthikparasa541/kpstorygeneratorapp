@@ -29,3 +29,5 @@ if st.button("Generate Story"):
   response = gpt4omini.invoke(query_template.format(story_type = story_ty, no_characters = no_ch , language = lang))
   st.write(response.content)
   st.write("***** End Story ************")
+if st.button("Clear"):
+  st.write("")
