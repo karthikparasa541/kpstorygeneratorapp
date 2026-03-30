@@ -125,8 +125,8 @@ def main():
                     unsafe_allow_html=True
              )
         
-        st.markdown("---")
-        st.success("🎉 The End!")
+         st.markdown("---")
+         st.success("🎉 The End!")
       
       
       #display_image_from_url(image_url)
