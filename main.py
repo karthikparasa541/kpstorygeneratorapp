@@ -76,13 +76,15 @@ def main():
       st.write("***** Begin Story ************")
       
       response = gpt4omini.invoke(query_template.format(story_type = story_ty, no_characters = no_ch , language = lang))
+      story_text = response.content
+      image_prompt = story_text[:4000]
       image_response = client.images.generate(
       model="dall-e-3",
-      prompt=response.content,
+      prompt=image_prompt,
       )
       image_url = image_response.data[0].url
       display_image_from_url(image_url)
-      st.write(response.content)
+      st.write(story_text)
       st.write("***** End Story ************")
       
   
