@@ -48,7 +48,7 @@ def display_image_from_url(url: str, max_width: int = 600, max_height: int = 400
         # Display the resized image
         display(img)
   
-      except Exception as e:
+    except Exception as e:
         st.error(f"An error occurred: {e}")
 
 
