@@ -77,7 +77,7 @@ def main():
       response = gpt4omini.invoke(query_template.format(story_type = story_ty, no_characters = no_ch , language = lang))
       story_text = response.content
       image_prompt_response = gpt4omini.invoke(
-        f"Create a vivid image prompt in under 200 words for a DALL-E illustration of this story:\n\n{story_text}"
+        f"Create a vivid image prompt in under 200 words for a DALL-E illustration of this story and include the title of the book on the image:\n\n{story_text}"
         )
       image_prompt = image_prompt_response.content[:4000]
         
