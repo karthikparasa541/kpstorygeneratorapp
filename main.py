@@ -97,9 +97,41 @@ def main():
       size="1024x1024"
       )
       image_url = image_response.data[0].url
-      display_image_from_url(image_url)
-      st.write(story_text)
-      st.write("***** End Story ************")
+     st.markdown("---")
+     st.markdown(f"## 📖 {book_title}")
+     st.markdown("---")
+
+     # Image centered
+     col1, col2, col3 = st.columns([1, 2, 1])
+     with col2:
+        display_image_from_url(image_url)
+
+     st.markdown("<br>", unsafe_allow_html=True)
+
+     # Story text
+     paragraphs = story_text.split("\n\n")
+     for para in paragraphs:
+         if para.strip():
+             st.markdown(
+                    f"""
+                    <p style="
+                        font-family: Georgia, serif;
+                        font-size: 17px;
+                        line-height: 1.9;
+                        color: #333333;
+                        margin-bottom: 16px;
+                    ">{para.strip()}</p>
+                    """,
+                    unsafe_allow_html=True
+             )
+        
+        st.markdown("---")
+        st.success("🎉 The End!")
+      
+      
+      #display_image_from_url(image_url)
+      #st.write(story_text)
+      #st.write("***** End Story ************")
       
   
   with bt2:
