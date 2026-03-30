@@ -97,20 +97,20 @@ def main():
       size="1024x1024"
       )
       image_url = image_response.data[0].url
-     st.markdown("---")
-     st.markdown(f"## 📖 {book_title}")
-     st.markdown("---")
+      st.markdown("---")
+      st.markdown(f"## 📖 {book_title}")
+      st.markdown("---")
 
      # Image centered
-     col1, col2, col3 = st.columns([1, 2, 1])
-     with col2:
+      col1, col2, col3 = st.columns([1, 2, 1])
+      with col2:
         display_image_from_url(image_url)
 
-     st.markdown("<br>", unsafe_allow_html=True)
+      st.markdown("<br>", unsafe_allow_html=True)
 
      # Story text
-     paragraphs = story_text.split("\n\n")
-     for para in paragraphs:
+      paragraphs = story_text.split("\n\n")
+      for para in paragraphs:
          if para.strip():
              st.markdown(
                     f"""
@@ -125,8 +125,8 @@ def main():
                     unsafe_allow_html=True
              )
         
-         st.markdown("---")
-         st.success("🎉 The End!")
+      st.markdown("---")
+      st.success("🎉 The End!")
       
       
       #display_image_from_url(image_url)
