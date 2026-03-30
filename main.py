@@ -79,7 +79,7 @@ def main():
       image_prompt_response = gpt4omini.invoke(
         f"Create a vivid image prompt in under 200 words for a DALL-E illustration of this story:\n\n{story_text}"
         )
-        image_prompt = image_prompt_response.content[:4000]
+      image_prompt = image_prompt_response.content[:4000]
         
       image_response = client.images.generate(
       model="dall-e-3",
