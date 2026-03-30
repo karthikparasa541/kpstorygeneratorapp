@@ -81,13 +81,13 @@ def main():
       )
       book_title = title_response.content.strip()
         
-      image_prompt_response = gpt4omini.invoke(
-        f"
+      image_prompt_response =
+        f"""
         Design a professional book cover for a book titled "{book_title}".
         The title "{book_title}" must appear prominently at the top of the cover in large, bold, decorative font.
         The cover illustration should depict the main scene or characters from this story: {story_text[:500]}
-        The overall composition should look like a real published book cover with the title as the focal text element."       
-        )
+        The overall composition should look like a real published book cover with the title as the focal text element."""       
+        
       image_prompt = image_prompt_response.content[:4000]
         
       image_response = client.images.generate(
