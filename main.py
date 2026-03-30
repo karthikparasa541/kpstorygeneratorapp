@@ -1,12 +1,15 @@
 # saving the api key
 import os
-
+import requests
 
 #Used langchain, prompt template and chain modules in this code.
 # import ChatAPI Model
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import PromptTemplate
 import streamlit as st
+from PIL import Image
+from io import BytesIO
+from IPython.display import display
 
 gpt4omini = ChatOpenAI(model_name = "gpt-4o-mini", openai_api_key = st.secrets["OPENAI_API_KEY"])
 
