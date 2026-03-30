@@ -76,10 +76,16 @@ def main():
       
       response = gpt4omini.invoke(query_template.format(story_type = story_ty, no_characters = no_ch , language = lang))
       story_text = response.content
-      image_prompt = story_text[:4000]
+      image_prompt_response = gpt4omini.invoke(
+        f"Create a vivid image prompt in under 200 words for a DALL-E illustration of this story:\n\n{story_text}"
+        )
+        image_prompt = image_prompt_response.content[:4000]
+        
       image_response = client.images.generate(
       model="dall-e-3",
       prompt=image_prompt,
+      n=1,
+      size="1024x1024"
       )
       image_url = image_response.data[0].url
       display_image_from_url(image_url)
