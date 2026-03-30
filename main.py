@@ -9,7 +9,6 @@ from langchain_core.prompts import PromptTemplate
 import streamlit as st
 from PIL import Image
 from io import BytesIO
-from IPython.display import display
 from openai import OpenAI
 
 def display_image_from_url(url: str, max_width: int = 600, max_height: int = 400):
