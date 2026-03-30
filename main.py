@@ -81,8 +81,7 @@ def main():
       )
       book_title = title_response.content.strip()
         
-      image_prompt_response =
-        f"""
+      image_prompt_response = f"""
         Design a professional book cover for a book titled "{book_title}".
         The title "{book_title}" must appear prominently at the top of the cover in large, bold, decorative font.
         The cover illustration should depict the main scene or characters from this story: {story_text[:500]}
