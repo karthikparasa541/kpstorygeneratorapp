@@ -80,7 +80,7 @@ def main():
       f"Generate a short, catchy book title (5 words or less) for this story:\n\n{story_text}"
       )
       book_title = title_response.content.strip()
-      st.write("Book Title :" book_title) 
+      st.write("Book Title : ", book_title) 
         
       image_prompt_response = gpt4omini.invoke(f"""
         Design a professional book cover for a book titled "{book_title}".
