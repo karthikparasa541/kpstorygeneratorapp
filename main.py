@@ -21,31 +21,32 @@ def display_image_from_url(url: str, max_width: int = 600, max_height: int = 400
     max_width (int): The maximum width of the displayed image. Default is 800.
     max_height (int): The maximum height of the displayed image. Default is 600.
     """
-    from PIL import Image
-    import requests
-    from io import BytesIO
-    from IPython.display import display
-
-    # Fetch the image
-    response = requests.get(url)
-    img = Image.open(BytesIO(response.content))
-
-    # Calculate the aspect ratio
-    aspect_ratio = img.width / img.height
-
-    # Determine new size while maintaining aspect ratio
-    if img.width > max_width or img.height > max_height:
-        if aspect_ratio > 1:
-            new_width = min(img.width, max_width)
-            new_height = int(new_width / aspect_ratio)
-        else:
-            new_height = min(img.height, max_height)
-            new_width = int(new_height * aspect_ratio)
-
-        img = img.resize((new_width, new_height))
-
-    # Display the resized image
-    display(img)
+    try:
+        from PIL import Image
+        import requests
+        from io import BytesIO
+        from IPython.display import display
+    
+        # Fetch the image
+        response = requests.get(url)
+        img = Image.open(BytesIO(response.content))
+    
+        # Calculate the aspect ratio
+        aspect_ratio = img.width / img.height
+    
+        # Determine new size while maintaining aspect ratio
+        if img.width > max_width or img.height > max_height:
+            if aspect_ratio > 1:
+                new_width = min(img.width, max_width)
+                new_height = int(new_width / aspect_ratio)
+            else:
+                new_height = min(img.height, max_height)
+                new_width = int(new_height * aspect_ratio)
+    
+            img = img.resize((new_width, new_height))
+    
+        # Display the resized image
+        display(img)
   
       except Exception as e:
         st.error(f"An error occurred: {e}")
