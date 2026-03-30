@@ -24,8 +24,7 @@ def display_image_from_url(url: str, max_width: int = 600, max_height: int = 400
         from PIL import Image
         import requests
         from io import BytesIO
-        from IPython.display import display
-    
+        
         # Fetch the image
         response = requests.get(url)
         img = Image.open(BytesIO(response.content))
