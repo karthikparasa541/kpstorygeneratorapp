@@ -157,11 +157,11 @@ def main():
                 )
     
                     with tempfile.NamedTemporaryFile(delete=False, suffix=".mp3") as tmp_file:
-                    tmp_file.write(audio_response.content)
-                    tmp_path = tmp_file.name
+                        tmp_file.write(audio_response.content)
+                        tmp_path = tmp_file.name
     
                     with open(tmp_path, "rb") as audio_file:
-                    st.session_state.audio_bytes = audio_file.read()
+                        st.session_state.audio_bytes = audio_file.read()
     
                  except Exception as e:
                     st.error(f"⚠️ Could not generate audio: {e}")
