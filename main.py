@@ -167,8 +167,8 @@ def main():
                 st.error(f"⚠️ Could not generate audio: {e}")
                 st.session_state.generate_audio = False  # reset on error
 
-    if st.session_state.audio_bytes:
-        st.audio(st.session_state.audio_bytes, format="audio/mp3", autoplay=True)
+        if st.session_state.audio_bytes:
+            st.audio(st.session_state.audio_bytes, format="audio/mp3", autoplay=True)
   
   with bt2:
     if st.button("Clear"):
