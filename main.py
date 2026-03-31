@@ -61,6 +61,8 @@ def main():
     st.session_state.image_url = None
   if "audio_bytes" not in st.session_state:
     st.session_state.audio_bytes = None
+  if "generate_audio" not in st.session_state:
+    st.session_state.generate_audio = False
   
   #We are defining a template below
   query_template = "Generate a {story_type} story with {no_characters} character(s) in {language}. Do not include the story title in your response. Include the characters and then show full story."
@@ -84,7 +86,8 @@ def main():
       
       response = gpt4omini.invoke(query_template.format(story_type = story_ty, no_characters = no_ch , language = lang))
       st.session_state.story_text = response.content
-      st.session_state.audio_bytes = None  # reset audio on new story 
+      st.session_state.audio_bytes = None  # reset audio on new story
+      st.session_state.generate_audio = False
       title_response = gpt4omini.invoke(
       f"Generate a short, catchy book title (5 words or less) for this story:\n\n{st.session_state.story_text}"
       )
@@ -140,6 +143,9 @@ def main():
       
       # Audio button
       if st.button("🔊 Listen to Story"):
+          st.session_state.generate_audio = True
+          
+      if st.session_state.generate_audio and st.session_state.audio_bytes is None:
          with st.spinner("🎙️ Generating audio..."):
              try:
                 import tempfile
@@ -159,6 +165,7 @@ def main():
     
              except Exception as e:
                 st.error(f"⚠️ Could not generate audio: {e}")
+                st.session_state.generate_audio = False  # reset on error
 
       if st.session_state.audio_bytes:
         st.audio(st.session_state.audio_bytes, format="audio/mp3", autoplay=True)
