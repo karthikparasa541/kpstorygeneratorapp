@@ -153,7 +153,7 @@ def main():
                 audio_response = client.audio.speech.create(
                     model="tts-1",
                     voice="nova",
-                    input=story_text
+                    input=st.session_state.story_text
                 )
     
                 with tempfile.NamedTemporaryFile(delete=False, suffix=".mp3") as tmp_file:
@@ -167,7 +167,7 @@ def main():
                 st.error(f"⚠️ Could not generate audio: {e}")
                 st.session_state.generate_audio = False  # reset on error
 
-      if st.session_state.audio_bytes:
+    if st.session_state.audio_bytes:
         st.audio(st.session_state.audio_bytes, format="audio/mp3", autoplay=True)
   
   with bt2:
