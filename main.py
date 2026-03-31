@@ -86,15 +86,15 @@ def main():
       st.session_state.story_text = response.content
       st.session_state.audio_bytes = None  # reset audio on new story 
       title_response = gpt4omini.invoke(
-      f"Generate a short, catchy book title (5 words or less) for this story:\n\n{story_text}"
+      f"Generate a short, catchy book title (5 words or less) for this story:\n\n{st.session_state.story_text}"
       )
       st.session_state.book_title = title_response.content.strip()
-      st.write("Book Title : ", book_title) 
+      st.write("Book Title : ", st.session_state.book_title) 
         
       image_prompt_response = gpt4omini.invoke(f"""
         Design a professional book cover for a book titled "{st.session_state.book_title}".
-        The title "{book_title}" must appear prominently at the top of the cover in large, bold, decorative font.
-        The cover illustration should depict the main scene or characters from this story: {story_text[:500]}
+        The title "{st.session_state.book_title}" must appear prominently at the top of the cover in large, bold, decorative font.
+        The cover illustration should depict the main scene or characters from this story: {st.session_state.story_text[:500]}
         The overall composition should look like a real published book cover with the title as the focal text element.""")       
         
       image_prompt = image_prompt_response.content[:4000]
