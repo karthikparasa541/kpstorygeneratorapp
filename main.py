@@ -133,6 +133,28 @@ def main():
       #st.write(story_text)
       #st.write("***** End Story ************")
       
+      # Audio button
+      if st.button("🔊 Listen to Story"):
+         with st.spinner("🎙️ Generating audio..."):
+         try:
+            import tempfile
+
+            audio_response = client.audio.speech.create(
+                model="tts-1",
+                voice="nova",
+                input=story_text
+            )
+
+            with tempfile.NamedTemporaryFile(delete=False, suffix=".mp3") as tmp_file:
+                tmp_file.write(audio_response.content)
+                tmp_path = tmp_file.name
+
+            with open(tmp_path, "rb") as audio_file:
+                st.audio(audio_file.read(), format="audio/mp3", autoplay=True)
+
+         except Exception as e:
+            st.error(f"⚠️ Could not generate audio: {e}")
+      
   
   with bt2:
     if st.button("Clear"):
