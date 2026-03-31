@@ -83,15 +83,16 @@ def main():
       st.write("***** Begin Story ************")
       
       response = gpt4omini.invoke(query_template.format(story_type = story_ty, no_characters = no_ch , language = lang))
-      story_text = response.content
+      st.session_state.story_text = response.content
+      st.session_state.audio_bytes = None  # reset audio on new story 
       title_response = gpt4omini.invoke(
       f"Generate a short, catchy book title (5 words or less) for this story:\n\n{story_text}"
       )
-      book_title = title_response.content.strip()
+      st.session_state.book_title = title_response.content.strip()
       st.write("Book Title : ", book_title) 
         
       image_prompt_response = gpt4omini.invoke(f"""
-        Design a professional book cover for a book titled "{book_title}".
+        Design a professional book cover for a book titled "{st.session_state.book_title}".
         The title "{book_title}" must appear prominently at the top of the cover in large, bold, decorative font.
         The cover illustration should depict the main scene or characters from this story: {story_text[:500]}
         The overall composition should look like a real published book cover with the title as the focal text element.""")       
@@ -104,7 +105,7 @@ def main():
       n=1,
       size="1024x1024"
       )
-      image_url = image_response.data[0].url
+      st.session_state.image_url = image_response.data[0].url
       st.markdown("---")
       st.markdown(f"## 📖 {book_title}")
       st.markdown("---")
@@ -112,12 +113,12 @@ def main():
      # Image centered
       col1, col2, col3 = st.columns([1, 2, 1])
       with col2:
-        display_image_from_url(image_url)
+        display_image_from_url(st.session_state.image_url)
 
       st.markdown("<br>", unsafe_allow_html=True)
 
      # Story text
-      paragraphs = story_text.split("\n\n")
+      paragraphs = st.session_state.story_text.split("\n\n")
       for para in paragraphs:
          if para.strip():
              st.markdown(
@@ -137,10 +138,6 @@ def main():
       st.success("🎉 The End!")
       
       
-      #display_image_from_url(image_url)
-      #st.write(story_text)
-      #st.write("***** End Story ************")
-      
       # Audio button
       if st.button("🔊 Listen to Story"):
          with st.spinner("🎙️ Generating audio..."):
@@ -158,11 +155,13 @@ def main():
                     tmp_path = tmp_file.name
     
                 with open(tmp_path, "rb") as audio_file:
-                    st.audio(audio_file.read(), format="audio/mp3", autoplay=True)
+                    st.session_state.audio_bytes = audio_file.read()
     
              except Exception as e:
                 st.error(f"⚠️ Could not generate audio: {e}")
-      
+
+      if st.session_state.audio_bytes:
+        st.audio(st.session_state.audio_bytes, format="audio/mp3", autoplay=True)
   
   with bt2:
     if st.button("Clear"):
