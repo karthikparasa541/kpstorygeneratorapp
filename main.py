@@ -107,7 +107,7 @@ def main():
       )
       st.session_state.image_url = image_response.data[0].url
       st.markdown("---")
-      st.markdown(f"## 📖 {book_title}")
+      st.markdown(f"## 📖 {st.session_state.book_title}")
       st.markdown("---")
 
      # Image centered
