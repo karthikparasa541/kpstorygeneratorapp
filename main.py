@@ -53,7 +53,15 @@ def display_image_from_url(url: str, max_width: int = 600, max_height: int = 400
 def main():
   gpt4omini = ChatOpenAI(model_name = "gpt-4o-mini", openai_api_key = st.secrets["OPENAI_API_KEY"])
   client = OpenAI()
-
+  if "story_text" not in st.session_state:
+    st.session_state.story_text = None
+  if "book_title" not in st.session_state:
+    st.session_state.book_title = None
+  if "image_url" not in st.session_state:
+    st.session_state.image_url = None
+  if "audio_bytes" not in st.session_state:
+    st.session_state.audio_bytes = None
+  
   #We are defining a template below
   query_template = "Generate a {story_type} story with {no_characters} character(s) in {language}. Do not include the story title in your response. Include the characters and then show full story."
   
