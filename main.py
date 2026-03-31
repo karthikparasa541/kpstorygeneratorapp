@@ -142,7 +142,7 @@ def main():
       
       
       # Audio button
-      if st.button("🔊 Listen to Story"):
+    if st.button("🔊 Listen to Story"):
           st.session_state.generate_audio = True
           
       if st.session_state.generate_audio and st.session_state.audio_bytes is None:
