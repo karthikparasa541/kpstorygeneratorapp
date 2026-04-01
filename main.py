@@ -65,7 +65,7 @@ def main():
     st.session_state.generate_audio = False
   
   #We are defining a template below
-  query_template = "Generate a {story_type} story with {no_characters} character(s) in {language}. Do not include the story title in your response. Include the characters and then show full story. Please keep the story less than 4000 characters"
+  query_template = "Generate a {story_type} story with {no_characters} character(s) in {language}. Do not include the story title in your response. Include the characters and then show full story. Please keep the story less than 3000 characters"
   
   #preparing the prompt with the template and mentioning the input variables
   query_prompt = PromptTemplate(input_variables = ["story_type","no_characters","language"], template = query_template)
