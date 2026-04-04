@@ -73,7 +73,7 @@ def main():
   st.header("Story Generator App")
   st.subheader("Generate stories using Generative AI")
   
-  story_ty = st.text_input("Enter the type of story you want to generate")
+  story_ty = st.text_input("Enter the Genre of story you want to generate")
   no_ch = st.number_input("Enter the number of characters in the story",min_value = 1, max_value = 5, value = 1, step = 1)
   lang = st.text_input("Enter the language in which you want the story to be generated")
   
