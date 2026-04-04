@@ -77,6 +77,8 @@ def main():
                           options=["Fairy Tale","Adventure","Mystery","Fantasy","Sci-Fi","Fable","Horror","Romance","Comedy","Thriller"])
   no_ch = st.number_input("Enter the number of characters in the story",min_value = 1, max_value = 5, value = 1, step = 1)
   lang = st.text_input("Enter the language in which you want the story to be generated")
+  lang - st.selectbox("Select the Genre of story you want to generate", 
+                          options=["English","Hindi","Telugu","Spanish"])
   
   bt1, bt2 = st.columns(2)
   
